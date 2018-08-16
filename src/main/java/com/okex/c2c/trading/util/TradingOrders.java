@@ -1,7 +1,10 @@
 package com.okex.c2c.trading.util;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.okex.c2c.trading.entity.TradingOrder;
 import com.okex.c2c.trading.web.model.TradingOrderModel;
 
 public class TradingOrders {
@@ -27,6 +30,22 @@ public class TradingOrders {
             return null;
         }
         return model.getSellTradingOrders().get(model.getSellTradingOrders().size() - 1).getExchangeRate();
+    }
+
+    public static Map<BigDecimal, BigDecimal> sellPriceBalanceMap(TradingOrderModel model) {
+        Map<BigDecimal, BigDecimal> result = new HashMap<>();
+        if (model.getSellTradingOrders() == null || model.getSellTradingOrders().isEmpty()) {
+            return result;
+        }
+        for (TradingOrder tradingOrder : model.getSellTradingOrders()) {
+            BigDecimal balance = result.get(tradingOrder.getExchangeRate());
+            if (balance == null) {
+                result.put(tradingOrder.getExchangeRate(), tradingOrder.getAvailableAmount());
+            } else {
+                result.put(tradingOrder.getExchangeRate(), balance.add(tradingOrder.getAvailableAmount()));
+            }
+        }
+        return result;
     }
 
 }
