@@ -16,7 +16,7 @@ public class Application {
         // SpringApplication.run(Application.class, args);
 
         TradingOrderContext tradingOrderContext = new TradingOrderContext();
-        TradingOrderModel tradingOrderModel = tradingOrderContext.currentTrading();
+        TradingOrderModel tradingOrderModel = tradingOrderContext.currentTrading("btc");
 
         BigDecimal diffrence = TradingOrders.priceDifference(tradingOrderModel);
         BigDecimal buyPrice = TradingOrders.maxBuyPrice(tradingOrderModel);
