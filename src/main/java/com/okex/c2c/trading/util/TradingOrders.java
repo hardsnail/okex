@@ -48,4 +48,20 @@ public class TradingOrders {
         return result;
     }
 
+    public static Map<BigDecimal, Integer> sellPriceCountMap(TradingOrderModel model) {
+        Map<BigDecimal, Integer> result = new HashMap<>();
+        if (model.getSellTradingOrders() == null || model.getSellTradingOrders().isEmpty()) {
+            return result;
+        }
+        for (TradingOrder tradingOrder : model.getSellTradingOrders()) {
+            Integer count = result.get(tradingOrder.getExchangeRate());
+            if (count == null) {
+                result.put(tradingOrder.getExchangeRate(), 1);
+            } else {
+                result.put(tradingOrder.getExchangeRate(), count + 1);
+            }
+        }
+        return result;
+    }
+
 }

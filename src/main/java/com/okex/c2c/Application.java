@@ -28,7 +28,13 @@ public class Application {
         try {
             System.out.println(new ObjectMapper().writeValueAsString(sellPriceBalanceMap));
         } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Map<BigDecimal, Integer> sellPriceCountMap = TradingOrders.sellPriceCountMap(tradingOrderModel);
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(sellPriceCountMap));
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
