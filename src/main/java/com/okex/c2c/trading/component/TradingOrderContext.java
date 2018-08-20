@@ -18,9 +18,9 @@ import com.okex.c2c.web.Result;
 @Component
 public class TradingOrderContext {
 
-    private static String AUTHORIZATION = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI4Mzk3OWE5OS1jYWRiLTQzM2YtOTM4Mi03NGYyMzE4YmY0MTFFb3dhIiwidWlkIjoidTNMYVg4bHJqaGN1emxKM3ZrY0tEQT09Iiwic3RhIjowLCJtaWQiOjAsImlhdCI6MTUzNDQyMzIyNCwiZXhwIjoxNTM1MDI4MDI0LCJiaWQiOjAsImRvbSI6Ind3dy5va2IuY29tIiwiaXNzIjoib2tjb2luIn0.lPBTCodltoP_YMQ3K8uqhefKoIAIzMez3QC-13aNvUC-XSwrZOCZBuAi_vTuAExcvo3cddApcPD-qw6AOu0PCA";
+    private static String AUTHORIZATION = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI4Mzk3OWE125OS1jYWRiLTQzM2YtOTM4Mi03NGYyMzE4YmY0MTFFb32dhIiwidWlkIjoidTNMYVg4bHJqaGN1emxKM3ZrY0tEQT09Iiwic3RhIjowLCJtaWQiOjAsImlhdCI6MTUzNDQyMzIyNCwiZXhwIjoxNTM1MDI4MDI0LCJiaWQiOjAsImRvbSI6Ind3dy5va2IuY29tIiwiaXNzIjoib2tjb2luIn0.lPBTCodltoP_YMQ3K8uqhefKoIAIzMez3QC-13aNvUC-XSwrZOCZBuAi_vTuAExcvo3cddApcPD-qw6AOu0PCA";
 
-    private static String COOKIE = "locale=zh_CN; perm=4DFFA2F63059CA553A3B77CE2265E169; _ga=GA1.2.326476787.1525790846; product=btc_usdt; lp=; isLogin=1; kycNationality=CN; first_ref=https://www.okb.com/otc/orderList; Hm_lvt_b4e1f9d04a77cfd5db302bc2bcc6fe45=1534338568,1534341340,1534423242,1534510740; ref=https://www.okb.com/otc; Hm_lpvt_b4e1f9d04a77cfd5db302bc2bcc6fe45=1534513425";
+    private static String COOKIE = "locale=zh_CN; perm=4DFFA2F63059CA553A3B77CE226533E169; _ga=GA1.2.326476787.1525790846; product=btc_usdt; lp=; isLogin=1; kycNationality=CN; first_ref=https://www.okb.com/otc/orderList; Hm_lvt_b4e1f9d04a77cfd5db302bc2bcc6fe45=1534338568,1534341340,1534423242,1534510740; ref=https://www.okb.com/otc; Hm_lpvt_b4e1f9d04a77cfd5db302bc2bcc6fe45=1534513425";
 
     private static String URL = "https://www.okb.com/v2/c2c-open/tradingOrders/group?digitalCurrencySymbol=%s&legalCurrencySymbol=cny&best=1&exchangeRateLevel=0&paySupport=0";
 
