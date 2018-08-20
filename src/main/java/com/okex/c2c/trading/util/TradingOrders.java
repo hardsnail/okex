@@ -37,6 +37,7 @@ public class TradingOrders {
         if (model.getSellTradingOrders() == null || model.getSellTradingOrders().isEmpty()) {
             return result;
         }
+        BigDecimal total = BigDecimal.valueOf(0);
         for (TradingOrder tradingOrder : model.getSellTradingOrders()) {
             BigDecimal balance = result.get(tradingOrder.getExchangeRate());
             if (balance == null) {
@@ -44,7 +45,9 @@ public class TradingOrders {
             } else {
                 result.put(tradingOrder.getExchangeRate(), balance.add(tradingOrder.getAvailableAmount()));
             }
+            total = total.add(tradingOrder.getAvailableAmount());
         }
+        result.put(BigDecimal.valueOf(0), total);
         return result;
     }
 
