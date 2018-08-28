@@ -9,34 +9,24 @@ public class TradingOrderModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private List<TradingOrder> bestTradingOrders;
+    private List<OrderModel> sell;
 
-    private List<TradingOrder> sellTradingOrders;
+    private List<OrderModel> buy;
 
-    private List<TradingOrder> buyTradingOrders;
+	public List<OrderModel> getSell() {
+		return sell;
+	}
 
-    public List<TradingOrder> getSellTradingOrders() {
-        return sellTradingOrders;
-    }
+	public void setSell(List<OrderModel> sell) {
+		this.sell = sell;
+	}
 
-    public void setSellTradingOrders(List<TradingOrder> sellTradingOrders) {
-        this.sellTradingOrders = sellTradingOrders;
-    }
+	public List<OrderModel> getBuy() {
+		return buy;
+	}
 
-    public List<TradingOrder> getBuyTradingOrders() {
-        return buyTradingOrders;
-    }
-
-    public void setBuyTradingOrders(List<TradingOrder> buyTradingOrders) {
-        this.buyTradingOrders = buyTradingOrders;
-    }
-
-    public List<TradingOrder> getBestTradingOrders() {
-        return bestTradingOrders;
-    }
-
-    public void setBestTradingOrders(List<TradingOrder> bestTradingOrders) {
-        this.bestTradingOrders = bestTradingOrders;
-    }
+	public void setBuy(List<OrderModel> buy) {
+		this.buy = buy;
+	}
 
 }
