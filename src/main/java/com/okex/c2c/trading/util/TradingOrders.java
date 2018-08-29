@@ -1,10 +1,9 @@
 package com.okex.c2c.trading.util;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-import com.okex.c2c.trading.entity.TradingOrder;
 import com.okex.c2c.trading.web.model.OrderModel;
 import com.okex.c2c.trading.web.model.TradingOrderModel;
 
@@ -34,7 +33,7 @@ public class TradingOrders {
     }
 
     public static Map<BigDecimal, BigDecimal> sellPriceBalanceMap(TradingOrderModel model) {
-        Map<BigDecimal, BigDecimal> result = new HashMap<>();
+        Map<BigDecimal, BigDecimal> result = new TreeMap<>((o1, o2) -> -o1.compareTo(o2));
         if (model.getSell() == null || model.getSell().isEmpty()) {
             return result;
         }
@@ -48,16 +47,51 @@ public class TradingOrders {
             }
             total = total.add(tradingOrder.getAvailableAmount());
         }
-        result.put(BigDecimal.valueOf(0), total);
+        result.put(BigDecimal.valueOf(10), total);
         return result;
     }
 
     public static Map<BigDecimal, Integer> sellPriceCountMap(TradingOrderModel model) {
-        Map<BigDecimal, Integer> result = new HashMap<>();
+        Map<BigDecimal, Integer> result = new TreeMap<>((o1, o2) -> -o1.compareTo(o2));
         if (model.getSell() == null || model.getSell().isEmpty()) {
             return result;
         }
         for (OrderModel tradingOrder : model.getSell()) {
+            Integer count = result.get(tradingOrder.getPrice());
+            if (count == null) {
+                result.put(tradingOrder.getPrice(), 1);
+            } else {
+                result.put(tradingOrder.getPrice(), count + 1);
+            }
+        }
+        return result;
+    }
+
+    public static Map<BigDecimal, BigDecimal> buyPriceBalanceMap(TradingOrderModel model) {
+        Map<BigDecimal, BigDecimal> result = new TreeMap<>();
+        if (model.getBuy() == null || model.getBuy().isEmpty()) {
+            return result;
+        }
+        BigDecimal total = BigDecimal.valueOf(0);
+        for (OrderModel tradingOrder : model.getBuy()) {
+            BigDecimal balance = result.get(tradingOrder.getPrice());
+            if (balance == null) {
+                result.put(tradingOrder.getPrice(), tradingOrder.getQuoteMaxAmountPerOrder());
+            } else {
+                result.put(tradingOrder.getPrice(), balance.add(tradingOrder.getQuoteMaxAmountPerOrder()));
+            }
+            total = total.add(tradingOrder.getAvailableAmount());
+        }
+        result.put(BigDecimal.valueOf(0), total);
+        return result;
+    }
+
+    public static Map<BigDecimal, Integer> buyPriceCountMap(TradingOrderModel model) {
+        Map<BigDecimal, Integer> result = new TreeMap<>();
+        if (model.getBuy() == null || model.getBuy().isEmpty()) {
+            return result;
+        }
+        for (OrderModel tradingOrder : model.getBuy()) {
             Integer count = result.get(tradingOrder.getPrice());
             if (count == null) {
                 result.put(tradingOrder.getPrice(), 1);

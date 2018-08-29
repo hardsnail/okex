@@ -26,14 +26,28 @@ public class Application {
 
         Map<BigDecimal, BigDecimal> sellPriceBalanceMap = TradingOrders.sellPriceBalanceMap(tradingOrderModel);
         try {
-            System.out.println(new ObjectMapper().writeValueAsString(sellPriceBalanceMap));
+            System.out.println("sellPriceBalanceMap :" + new ObjectMapper().writeValueAsString(sellPriceBalanceMap));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        Map<BigDecimal, BigDecimal> buyPriceBalanceMap = TradingOrders.buyPriceBalanceMap(tradingOrderModel);
+        try {
+            System.out.println("buyPriceBalanceMap : " + new ObjectMapper().writeValueAsString(buyPriceBalanceMap));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
         Map<BigDecimal, Integer> sellPriceCountMap = TradingOrders.sellPriceCountMap(tradingOrderModel);
         try {
-            System.out.println(new ObjectMapper().writeValueAsString(sellPriceCountMap));
+            System.out.println("sellPriceCountMap : " + new ObjectMapper().writeValueAsString(sellPriceCountMap));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        Map<BigDecimal, Integer> buyPriceCountMap = TradingOrders.buyPriceCountMap(tradingOrderModel);
+        try {
+            System.out.println("buyPriceCountMap : " + new ObjectMapper().writeValueAsString(buyPriceCountMap));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
