@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.okex.c2c.trading.component.TradingOrderContext;
+import com.okex.c2c.trading.ring.RingMainThread;
 import com.okex.c2c.trading.util.TradingOrders;
 import com.okex.c2c.trading.web.model.TradingOrderModel;
 
@@ -15,6 +16,13 @@ public class Application {
     public static void main(String[] args) {
         // SpringApplication.run(Application.class, args);
 
+        printBasicInfo();
+
+        RingMainThread thread = new RingMainThread();
+        thread.start();
+    }
+
+    private static void printBasicInfo() {
         TradingOrderContext tradingOrderContext = new TradingOrderContext();
         TradingOrderModel tradingOrderModel = tradingOrderContext.currentTrading("usdt");
 
