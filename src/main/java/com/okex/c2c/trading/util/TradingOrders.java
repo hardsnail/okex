@@ -1,6 +1,7 @@
 package com.okex.c2c.trading.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -76,9 +77,9 @@ public class TradingOrders {
         for (OrderModel tradingOrder : model.getBuy()) {
             BigDecimal balance = result.get(tradingOrder.getPrice());
             if (balance == null) {
-                result.put(tradingOrder.getPrice(), tradingOrder.getQuoteMaxAmountPerOrder());
+                result.put(tradingOrder.getPrice(), tradingOrder.getQuoteMaxAmountPerOrder().divide(tradingOrder.getPrice(), RoundingMode.HALF_UP));
             } else {
-                result.put(tradingOrder.getPrice(), balance.add(tradingOrder.getQuoteMaxAmountPerOrder()));
+                result.put(tradingOrder.getPrice(), balance.add(tradingOrder.getQuoteMaxAmountPerOrder().divide(tradingOrder.getPrice(), RoundingMode.HALF_UP)));
             }
             total = total.add(tradingOrder.getAvailableAmount());
         }

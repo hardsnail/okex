@@ -34,6 +34,10 @@ public class UserModel {
 	
 	private String type;
 
+    private Boolean strategyDisabled;
+
+    private String strategyDisabledReason;
+
 	public String getAcceptState() {
 		return acceptState;
 	}
@@ -153,5 +157,21 @@ public class UserModel {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+    public Boolean getStrategyDisabled() {
+        return strategyDisabled;
+    }
+
+    public void setStrategyDisabled(Boolean strategyDisabled) {
+        this.strategyDisabled = strategyDisabled;
+    }
+
+    public String getStrategyDisabledReason() {
+        return strategyDisabledReason;
+    }
+
+    public void setStrategyDisabledReason(String strategyDisabledReason) {
+        this.strategyDisabledReason = strategyDisabledReason;
+    }
 
 }
