@@ -13,7 +13,7 @@ public class RingMainThread extends Thread {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(60000);
+                
 
                 TradingOrderContext tradingOrderContext = new TradingOrderContext();
                 TradingOrderModel tradingOrderModel = tradingOrderContext.currentTrading("usdt");
@@ -21,18 +21,18 @@ public class RingMainThread extends Thread {
                 BigDecimal diffrence = TradingOrders.priceDifference(tradingOrderModel);
                 BigDecimal buyPrice = TradingOrders.maxBuyPrice(tradingOrderModel);
                 BigDecimal sellPrice = TradingOrders.minSellPrice(tradingOrderModel);
-                if (diffrence.compareTo(BigDecimal.valueOf(0.03)) > 0) {
+                if (diffrence.compareTo(BigDecimal.valueOf(0.02)) > 0) {
                     Rings.ring();
                 }
 
-                if (sellPrice.compareTo(BigDecimal.valueOf(6.8)) > 0) {
+                if (sellPrice.compareTo(BigDecimal.valueOf(6.93)) > 0) {
                     Rings.ring();
                 }
 
-                if (buyPrice.compareTo(BigDecimal.valueOf(6.7)) < 0) {
+                if (buyPrice.compareTo(BigDecimal.valueOf(6.9)) < 0) {
                     Rings.ring();
                 }
-
+                Thread.sleep(60000);
             } catch (Exception e) {
                 e.printStackTrace();
             }

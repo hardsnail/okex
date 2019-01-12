@@ -25,11 +25,21 @@ public class OrderModel {
 	
 	private Boolean exchangeRateDeviateTooFar;
 	
+	public Boolean getIsBlockTrade() {
+		return isBlockTrade;
+	}
+
+	public void setIsBlockTrade(Boolean isBlockTrade) {
+		this.isBlockTrade = isBlockTrade;
+	}
+
 	private BigDecimal floatRate;
 	
 	private Boolean hidden;
 	
 	private BigDecimal holdAmount;
+	
+	private Boolean isBlockTrade;
 	
 	private Integer index;
 	
@@ -68,7 +78,7 @@ public class OrderModel {
 	private String type;
 	
 	private String userType;
-
+	
 	public BigDecimal getAvailableAmount() {
 		return availableAmount;
 	}
@@ -300,5 +310,5 @@ public class OrderModel {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	
+
 }

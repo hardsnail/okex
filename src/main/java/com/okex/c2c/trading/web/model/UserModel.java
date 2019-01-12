@@ -34,10 +34,10 @@ public class UserModel {
 	
 	private String type;
 
-    private Boolean strategyDisabled;
-
-    private String strategyDisabledReason;
-
+	private Boolean strategyDisabled;
+	
+	private String strategyDisabledReason;
+	
 	public String getAcceptState() {
 		return acceptState;
 	}
@@ -158,20 +158,20 @@ public class UserModel {
 		this.type = type;
 	}
 
-    public Boolean getStrategyDisabled() {
-        return strategyDisabled;
-    }
+	public Boolean getStrategyDisabled() {
+		return strategyDisabled;
+	}
 
-    public void setStrategyDisabled(Boolean strategyDisabled) {
-        this.strategyDisabled = strategyDisabled;
-    }
+	public void setStrategyDisabled(Boolean strategyDisabled) {
+		this.strategyDisabled = strategyDisabled;
+	}
 
-    public String getStrategyDisabledReason() {
-        return strategyDisabledReason;
-    }
+	public String getStrategyDisabledReason() {
+		return strategyDisabledReason;
+	}
 
-    public void setStrategyDisabledReason(String strategyDisabledReason) {
-        this.strategyDisabledReason = strategyDisabledReason;
-    }
+	public void setStrategyDisabledReason(String strategyDisabledReason) {
+		this.strategyDisabledReason = strategyDisabledReason;
+	}
 
 }

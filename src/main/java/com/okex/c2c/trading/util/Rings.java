@@ -8,7 +8,7 @@ import javazoom.jl.player.Player;
 
 public class Rings {
 
-    private static final String RING_FILE_PATH = "";
+    private static final String RING_FILE_PATH = "G:\\纯音乐\\庄心妍 - 走着走着就散了.mp3";
 
     public static void ring() {
         try {
@@ -22,5 +22,9 @@ public class Rings {
             e.printStackTrace();
         }
     }
+    
+    public static void main(String[] args) {
+    	ring();
+	}
 
 }
