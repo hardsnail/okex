@@ -7,6 +7,7 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderModel {
 
 	private BigDecimal availableAmount;
@@ -19,11 +20,23 @@ public class OrderModel {
 	
 	private BigDecimal completedOrderTotal;
 	
+	private Integer maxCompletedOrderQuantity;
+	
+	private Integer unpaidOrderTimeoutMinutes;
+	
 	private Long createdDate;
+	
+	private Long brokerId;
 	
 	private UserModel creator;
 	
 	private Boolean exchangeRateDeviateTooFar;
+	
+	private Boolean banned;
+	
+	private String bannedReason;
+	
+	private String bannedReasonCode;
 	
 	public Boolean getIsBlockTrade() {
 		return isBlockTrade;
@@ -310,5 +323,54 @@ public class OrderModel {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+
+	public Boolean getBanned() {
+		return banned;
+	}
+
+	public void setBanned(Boolean banned) {
+		this.banned = banned;
+	}
+
+	public String getBannedReason() {
+		return bannedReason;
+	}
+
+	public void setBannedReason(String bannedReason) {
+		this.bannedReason = bannedReason;
+	}
+
+	public String getBannedReasonCode() {
+		return bannedReasonCode;
+	}
+
+	public void setBannedReasonCode(String bannedReasonCode) {
+		this.bannedReasonCode = bannedReasonCode;
+	}
+
+	public Integer getMaxCompletedOrderQuantity() {
+		return maxCompletedOrderQuantity;
+	}
+
+	public void setMaxCompletedOrderQuantity(Integer maxCompletedOrderQuantity) {
+		this.maxCompletedOrderQuantity = maxCompletedOrderQuantity;
+	}
+
+	public Integer getUnpaidOrderTimeoutMinutes() {
+		return unpaidOrderTimeoutMinutes;
+	}
+
+	public void setUnpaidOrderTimeoutMinutes(Integer unpaidOrderTimeoutMinutes) {
+		this.unpaidOrderTimeoutMinutes = unpaidOrderTimeoutMinutes;
+	}
+
+	public Long getBrokerId() {
+		return brokerId;
+	}
+
+	public void setBrokerId(Long brokerId) {
+		this.brokerId = brokerId;
+	}
+
 
 }

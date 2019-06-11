@@ -74,10 +74,21 @@ public class WebsocketClient {
 					TickerSpotResponse[] tickerSpotResponse = mapper.readValue(message, TickerSpotResponse[].class);
 					String currency = channelCurrencyMap.get(tickerSpotResponse[0].getChannel());
 					TickterSpotCache.tickterSpotMap.put(currency, tickerSpotResponse[0].getData());
-					System.out.println(message);
+//					System.out.println(message);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+			
+			@Override
+			public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+				connect();
+			}
+			
+			@Override
+			public void onClosed(WebSocket webSocket, int code, String reason) {
+				System.out.println("连接关闭,code="+code+",reason="+reason);
+				super.onClosed(webSocket, code, reason);
 			}
 		});
 	}

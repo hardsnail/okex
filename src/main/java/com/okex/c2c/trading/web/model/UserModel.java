@@ -2,6 +2,9 @@ package com.okex.c2c.trading.web.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserModel {
 	
 	private String acceptState;
@@ -19,6 +22,8 @@ public class UserModel {
 	private Integer cancelledOrderQuantity;
 	
 	private Integer completedOrderQuantity;
+	
+	private Integer maxCompletedOrderQuantity;
 	
 	private BigDecimal completionRate;
 	
@@ -172,6 +177,14 @@ public class UserModel {
 
 	public void setStrategyDisabledReason(String strategyDisabledReason) {
 		this.strategyDisabledReason = strategyDisabledReason;
+	}
+
+	public Integer getMaxCompletedOrderQuantity() {
+		return maxCompletedOrderQuantity;
+	}
+
+	public void setMaxCompletedOrderQuantity(Integer maxCompletedOrderQuantity) {
+		this.maxCompletedOrderQuantity = maxCompletedOrderQuantity;
 	}
 
 }

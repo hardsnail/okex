@@ -21,15 +21,15 @@ public class RingMainThread extends Thread {
                 BigDecimal diffrence = TradingOrders.priceDifference(tradingOrderModel);
                 BigDecimal buyPrice = TradingOrders.maxBuyPrice(tradingOrderModel);
                 BigDecimal sellPrice = TradingOrders.minSellPrice(tradingOrderModel);
-                if (diffrence.compareTo(BigDecimal.valueOf(0.02)) > 0) {
+                if (diffrence.compareTo(BigDecimal.valueOf(0.05)) > 0) {
                     Rings.ring();
                 }
 
-                if (sellPrice.compareTo(BigDecimal.valueOf(6.93)) > 0) {
+                if (sellPrice.compareTo(BigDecimal.valueOf(6.82)) > 0) {
                     Rings.ring();
                 }
 
-                if (buyPrice.compareTo(BigDecimal.valueOf(6.9)) < 0) {
+                if (buyPrice.compareTo(BigDecimal.valueOf(6.75)) < 0) {
                     Rings.ring();
                 }
                 Thread.sleep(60000);
