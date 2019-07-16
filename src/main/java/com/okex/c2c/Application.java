@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.okex.c2c.spot.TickterSpotCache;
 import com.okex.c2c.trading.component.TradingOrderContext;
 import com.okex.c2c.trading.constant.TradingOrderConstant;
-import com.okex.c2c.trading.ring.RingMainThread;
 import com.okex.c2c.trading.util.TradingOrders;
 import com.okex.c2c.trading.web.model.OrderModel;
 import com.okex.c2c.trading.web.model.TradingOrderModel;
@@ -24,21 +23,21 @@ public class Application {
     public static void main(String[] args) {
          SpringApplication.run(Application.class, args);
 
-         while(true){
-        	 try {
+		while (true) {
+			try {
 				Thread.sleep(3000l);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-        	 printBasicInfo();
-         }
+			printBasicInfo();
+		}
 
 //        RingMainThread thread = new RingMainThread();
 //        thread.start();
     }
 
     private static void printBasicInfo() {
-    	String currency = TradingOrderConstant.CURRENCY_BTC;
+		String currency = TradingOrderConstant.CURRENCY_BTC;
     	BigDecimal last = BigDecimal.valueOf(1);
     	
     	if(TickterSpotCache.tickterSpotMap.get(currency) != null){

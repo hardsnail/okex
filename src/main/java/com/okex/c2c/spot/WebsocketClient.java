@@ -3,6 +3,7 @@ package com.okex.c2c.spot;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.compress.compressors.deflate64.Deflate64CompressorInputStream;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.okex.c2c.trading.constant.TradingOrderConstant;
 
@@ -27,12 +29,11 @@ public class WebsocketClient {
 	private static Map<String, String> channelCurrencyMap = new HashMap<>();
 	
 	static{
-		channelCurrencyMap.put("ok_sub_spot_btc_usdt_ticker", TradingOrderConstant.CURRENCY_BTC);
-		channelCurrencyMap.put("ok_sub_spot_eth_usdt_ticker", TradingOrderConstant.CURRENCY_ETH);
-		channelCurrencyMap.put("ok_sub_spot_eos_usdt_ticker", TradingOrderConstant.CURRENCY_EOS);
-		channelCurrencyMap.put("ok_sub_spot_ltc_usdt_ticker", TradingOrderConstant.CURRENCY_LTC);
-		channelCurrencyMap.put("ok_sub_spot_bch_usdt_ticker", TradingOrderConstant.CURRENCY_BCH);
-		channelCurrencyMap.put("ok_sub_spot_etc_usdt_ticker", TradingOrderConstant.CURRENCY_ETC);
+		channelCurrencyMap.put("BTC-USDT", TradingOrderConstant.CURRENCY_BTC);
+		channelCurrencyMap.put("EOS-USDT", TradingOrderConstant.CURRENCY_EOS);
+		channelCurrencyMap.put("LTC-USDT", TradingOrderConstant.CURRENCY_LTC);
+		channelCurrencyMap.put("BCH-USDT", TradingOrderConstant.CURRENCY_BCH);
+		channelCurrencyMap.put("ETC-USDT", TradingOrderConstant.CURRENCY_ETC);
 	}
 	
 	@PostConstruct
@@ -48,17 +49,12 @@ public class WebsocketClient {
 		OkHttpClient client = new OkHttpClient();
 
 		Request request = new Request.Builder()
-				.url("wss://okexcomreal.bafang.com:10441/websocket/okexapi?compress=true").build();
+				.url("wss://okexcomreal.bafang.com:8443/ws/v3?compress=true").build();
 
 		client.newWebSocket(request, new WebSocketListener() {
 			@Override
 			public void onOpen(WebSocket webSocket, Response response) {
-				webSocket.send("{\"channel\":\"ok_sub_spot_btc_usdt_ticker\",\"event\":\"addChannel\"}");
-				webSocket.send("{\"channel\":\"ok_sub_spot_eth_usdt_ticker\",\"event\":\"addChannel\"}");
-				webSocket.send("{\"channel\":\"ok_sub_spot_eos_usdt_ticker\",\"event\":\"addChannel\"}");
-				webSocket.send("{\"channel\":\"ok_sub_spot_ltc_usdt_ticker\",\"event\":\"addChannel\"}");
-				webSocket.send("{\"channel\":\"ok_sub_spot_bch_usdt_ticker\",\"event\":\"addChannel\"}");
-				webSocket.send("{\"channel\":\"ok_sub_spot_etc_usdt_ticker\",\"event\":\"addChannel\"}");
+				webSocket.send("{\"op\":\"subscribe\",\"args\":[\"spot/ticker:BTC-USDT\"]}");
 			}
 
 			@Override
@@ -71,10 +67,22 @@ public class WebsocketClient {
 				String message = uncompress(bytes.toByteArray());
 				ObjectMapper mapper = new ObjectMapper();
 				try {
-					TickerSpotResponse[] tickerSpotResponse = mapper.readValue(message, TickerSpotResponse[].class);
-					String currency = channelCurrencyMap.get(tickerSpotResponse[0].getChannel());
-					TickterSpotCache.tickterSpotMap.put(currency, tickerSpotResponse[0].getData());
-//					System.out.println(message);
+					JsonNode jsonNode = mapper.readTree(message);
+					JsonNode tableJsonNode = jsonNode.get("table");
+					if (tableJsonNode != null && tableJsonNode.asText().equals("spot/ticker")) {
+						JsonNode dataJsonNode = jsonNode.get("data");
+						if (dataJsonNode != null) {
+							dataJsonNode.forEach((JsonNode data) -> {
+								String instrument_id = data.get("instrument_id").asText();
+								TickterSpot tickterSpot = new TickterSpot();
+								tickterSpot.setLast(new BigDecimal(data.get("last").asText()));
+								tickterSpot.setTimestamp(data.get("timestamp").asLong());
+								TickterSpotCache.tickterSpotMap.put(channelCurrencyMap.get(instrument_id), tickterSpot);
+							});
+						}
+					}
+
+					System.out.println(message);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

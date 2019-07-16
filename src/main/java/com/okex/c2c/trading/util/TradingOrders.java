@@ -48,7 +48,6 @@ public class TradingOrders {
             }
             total = total.add(tradingOrder.getAvailableAmount());
         }
-        result.put(BigDecimal.valueOf(10), total);
         return result;
     }
 
@@ -69,7 +68,7 @@ public class TradingOrders {
     }
 
     public static Map<BigDecimal, BigDecimal> buyPriceBalanceMap(TradingOrderModel model) {
-        Map<BigDecimal, BigDecimal> result = new TreeMap<>();
+		Map<BigDecimal, BigDecimal> result = new TreeMap<>((o1, o2) -> -o1.compareTo(o2));
         if (model.getBuy() == null || model.getBuy().isEmpty()) {
             return result;
         }
@@ -83,12 +82,11 @@ public class TradingOrders {
             }
             total = total.add(tradingOrder.getAvailableAmount());
         }
-        result.put(BigDecimal.valueOf(0), total);
         return result;
     }
 
     public static Map<BigDecimal, Integer> buyPriceCountMap(TradingOrderModel model) {
-        Map<BigDecimal, Integer> result = new TreeMap<>();
+		Map<BigDecimal, Integer> result = new TreeMap<>((o1, o2) -> -o1.compareTo(o2));
         if (model.getBuy() == null || model.getBuy().isEmpty()) {
             return result;
         }
