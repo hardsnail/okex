@@ -16,13 +16,9 @@ public class OrderModel {
 	
 	private Boolean blocked;
 	
-	private Integer completedAmount;
+	private BigDecimal completedAmount;
 	
 	private BigDecimal completedOrderTotal;
-	
-	private Integer maxCompletedOrderQuantity;
-	
-	private Integer unpaidOrderTimeoutMinutes;
 	
 	private Long createdDate;
 	
@@ -63,9 +59,7 @@ public class OrderModel {
 	private Long maxUserCreatedDate;
 	
 	private Integer minCompletedOrderQuantity;
-	
-	private Integer minCompletionRate;
-	
+
 	private Integer minKycLevel;
 	
 	private Boolean mine;
@@ -116,11 +110,11 @@ public class OrderModel {
 		this.blocked = blocked;
 	}
 
-	public Integer getCompletedAmount() {
+	public BigDecimal getCompletedAmount() {
 		return completedAmount;
 	}
 
-	public void setCompletedAmount(Integer completedAmount) {
+	public void setCompletedAmount(BigDecimal completedAmount) {
 		this.completedAmount = completedAmount;
 	}
 
@@ -218,14 +212,6 @@ public class OrderModel {
 
 	public void setMinCompletedOrderQuantity(Integer minCompletedOrderQuantity) {
 		this.minCompletedOrderQuantity = minCompletedOrderQuantity;
-	}
-
-	public Integer getMinCompletionRate() {
-		return minCompletionRate;
-	}
-
-	public void setMinCompletionRate(Integer minCompletionRate) {
-		this.minCompletionRate = minCompletionRate;
 	}
 
 	public Integer getMinKycLevel() {
@@ -346,22 +332,6 @@ public class OrderModel {
 
 	public void setBannedReasonCode(String bannedReasonCode) {
 		this.bannedReasonCode = bannedReasonCode;
-	}
-
-	public Integer getMaxCompletedOrderQuantity() {
-		return maxCompletedOrderQuantity;
-	}
-
-	public void setMaxCompletedOrderQuantity(Integer maxCompletedOrderQuantity) {
-		this.maxCompletedOrderQuantity = maxCompletedOrderQuantity;
-	}
-
-	public Integer getUnpaidOrderTimeoutMinutes() {
-		return unpaidOrderTimeoutMinutes;
-	}
-
-	public void setUnpaidOrderTimeoutMinutes(Integer unpaidOrderTimeoutMinutes) {
-		this.unpaidOrderTimeoutMinutes = unpaidOrderTimeoutMinutes;
 	}
 
 	public Long getBrokerId() {

@@ -82,7 +82,7 @@ public class WebsocketClient {
 						}
 					}
 
-					System.out.println(message);
+//					System.out.println(message);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -11,19 +11,9 @@ public class UserModel {
 	
 	private Boolean agreedTos;
 	
-	private Integer avgCompleteTime;
-	
-	private Integer avgPaymentTime;
-	
 	private Boolean boundBankCard;
 	
 	private Boolean boundPhoneNumber;
-	
-	private Integer cancelledOrderQuantity;
-	
-	private Integer completedOrderQuantity;
-	
-	private Integer maxCompletedOrderQuantity;
 	
 	private BigDecimal completionRate;
 	
@@ -59,22 +49,6 @@ public class UserModel {
 		this.agreedTos = agreedTos;
 	}
 
-	public Integer getAvgCompleteTime() {
-		return avgCompleteTime;
-	}
-
-	public void setAvgCompleteTime(Integer avgCompleteTime) {
-		this.avgCompleteTime = avgCompleteTime;
-	}
-
-	public Integer getAvgPaymentTime() {
-		return avgPaymentTime;
-	}
-
-	public void setAvgPaymentTime(Integer avgPaymentTime) {
-		this.avgPaymentTime = avgPaymentTime;
-	}
-
 	public Boolean getBoundBankCard() {
 		return boundBankCard;
 	}
@@ -89,22 +63,6 @@ public class UserModel {
 
 	public void setBoundPhoneNumber(Boolean boundPhoneNumber) {
 		this.boundPhoneNumber = boundPhoneNumber;
-	}
-
-	public Integer getCancelledOrderQuantity() {
-		return cancelledOrderQuantity;
-	}
-
-	public void setCancelledOrderQuantity(Integer cancelledOrderQuantity) {
-		this.cancelledOrderQuantity = cancelledOrderQuantity;
-	}
-
-	public Integer getCompletedOrderQuantity() {
-		return completedOrderQuantity;
-	}
-
-	public void setCompletedOrderQuantity(Integer completedOrderQuantity) {
-		this.completedOrderQuantity = completedOrderQuantity;
 	}
 
 	public BigDecimal getCompletionRate() {
@@ -177,14 +135,6 @@ public class UserModel {
 
 	public void setStrategyDisabledReason(String strategyDisabledReason) {
 		this.strategyDisabledReason = strategyDisabledReason;
-	}
-
-	public Integer getMaxCompletedOrderQuantity() {
-		return maxCompletedOrderQuantity;
-	}
-
-	public void setMaxCompletedOrderQuantity(Integer maxCompletedOrderQuantity) {
-		this.maxCompletedOrderQuantity = maxCompletedOrderQuantity;
 	}
 
 }
